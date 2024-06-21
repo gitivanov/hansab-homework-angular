@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Cars</h2>
+    <div class="mb-3">
+      <input [(ngModel)]="search" (input)="searchCars()" type="text" class="form-control" placeholder="Search cars by name">
+    </div>
+    <div class="mb-3">
+      <button (click)="sortCars('name:asc')" class="btn btn-primary">Sort by Name Asc</button>
+      <button (click)="sortCars('name:desc')" class="btn btn-secondary">Sort by Name Desc</button>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Model</th>
+          <th>Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of cars">
+          <td>{{ car.id }}</td>
+          <td>{{ car.name }}</td>
+          <td>{{ car.model }}</td>
+          <td>{{ car.number }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Users</h2>
+    <div class="mb-3">
+      <input [(ngModel)]="search" (input)="searchUsers()" type="text" class="form-control" placeholder="Search users by name">
+    </div>
+    <div class="mb-3">
+      <button (click)="sortUsers('name:asc')" class="btn btn-primary">Sort by Name Asc</button>
+      <button (click)="sortUsers('name:desc')" class="btn btn-secondary">Sort by Name Desc</button>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Cars</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let car of user.cars">{{ car.name }} ({{ car.model }})</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
