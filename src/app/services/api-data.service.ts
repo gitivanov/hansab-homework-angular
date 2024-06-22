@@ -1,9 +1,8 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserDto } from '../models/user.model';
 import { CarDto } from '../models/car.model';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -11,12 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class ApiDataService {
 
-  constructor(
-    private http: HttpClient, 
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {  
-    console.log(`api url ${environment.apiUrl}`);
-  }
+  constructor( private http: HttpClient) {}
 
   getAllUsers(sort: string): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(`${environment.apiUrl}/users?sort=${sort}`);

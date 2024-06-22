@@ -32,6 +32,6 @@ jobs:
         with:
           name: angular-dist
           path: dist/
-# don't runs test for now  - it should be fixed 
-      # - name: Run tests (if applicable)
-      #   run: npm test -- --watch=false
+          
+      - name: Run tests (if applicable)
+        run: npm test -- --watch=false

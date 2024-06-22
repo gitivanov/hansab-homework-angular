@@ -14,7 +14,7 @@ import { CarDto } from '../../models/car.model';
 })
 export class CarListComponent implements OnInit {
   cars: CarDto[] = [];
-  sort: string = 'name:asc';
+  sort: string = 'number:asc';
   search: string = '';
 
   constructor(private apiDataService: ApiDataService) { }

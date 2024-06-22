@@ -1,16 +1,49 @@
 import { TestBed } from '@angular/core/testing';
+import { ApiDataService } from './api-data.service';
+import { HttpClient } from '@angular/common/http';
+import { UserDto } from '../models/user.model';
+import { of } from 'rxjs';
+import { CarDto } from '../models/car.model';
 
-import { UserService } from './api-data.service';
+describe('ApiDataService', () => {
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
+  let apiDataService: ApiDataService;
 
-describe('UserService', () => {
-  let service: UserService;
+  let mockUsers: UserDto[] = [
+    { id: 1, name: 'Mock User 1', cars: [] },
+    { id: 2, name: 'Mock User 2', cars: [] }
+  ];
+  
+  let mockCars: CarDto[] = [
+    { id: 1, name: 'BMW', model:"X1", number:"111BMW" },
+    { id: 2, name: 'AUDI', model:"A6", number: "222AAA" }
+  ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserService);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
+    apiDataService = new ApiDataService(httpClientSpy);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(apiDataService).toBeTruthy();
+  });
+
+  it('should get all users', ()=> {
+    let sort: string = 'name:asc';
+    httpClientSpy.get.and.returnValue(of(mockUsers));
+    apiDataService.getAllUsers(sort).subscribe(users => {    
+        expect(users).toEqual(mockUsers);
+    });
+    expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
+  });
+
+  it('should get all cars', ()=> {
+    let sort: string = 'name:asc';
+    httpClientSpy.get.and.returnValue(of(mockCars));
+    apiDataService.getAllCars(sort).subscribe(cars => {    
+        expect(cars).toEqual(mockCars);
+    });
+    expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
   });
 });

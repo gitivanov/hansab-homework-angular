@@ -1,11 +1,11 @@
 <div class="container">
     <h2>Cars</h2>
     <div class="mb-3">
-      <input [(ngModel)]="search" (input)="searchCars()" type="text" class="form-control" placeholder="Search cars by name">
+      <input [(ngModel)]="search" (input)="searchCars()" type="text" class="form-control" placeholder="Search cars by number">
     </div>
     <div class="mb-3">
-      <button (click)="sortCars('name:asc')" class="btn btn-primary">Sort by Name Asc</button>
-      <button (click)="sortCars('name:desc')" class="btn btn-secondary">Sort by Name Desc</button>
+      <button (click)="sortCars('number:asc')" class="btn btn-primary">Sort by Number Asc</button>
+      <button (click)="sortCars('number:desc')" class="btn btn-secondary">Sort by Number Desc</button>
     </div>
     <table class="table table-bordered">
       <thead>
