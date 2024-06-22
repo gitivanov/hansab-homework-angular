@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 import { HttpClientModule } from '@angular/common/http';
-import { CarService } from '../../services/car.service';
+import { ApiDataService } from '../../services/api-data.service';
 import { CarDto } from '../../models/car.model';
 
 @Component({
@@ -17,20 +17,20 @@ export class CarListComponent implements OnInit {
   sort: string = 'name:asc';
   search: string = '';
 
-  constructor(private carService: CarService) { }
+  constructor(private apiDataService: ApiDataService) { }
 
   ngOnInit(): void {
     this.loadCars();
   }
 
   loadCars(): void {
-    this.carService.getAllCars(this.sort).subscribe(cars => {
+    this.apiDataService.getAllCars(this.sort).subscribe(cars => {
       this.cars = cars;
     });
   }
 
   searchCars(): void {
-    this.carService.getCarsByName(this.search, this.sort).subscribe(cars => {
+    this.apiDataService.getCarsByName(this.search, this.sort).subscribe(cars => {
       this.cars = cars;
     });
   }
