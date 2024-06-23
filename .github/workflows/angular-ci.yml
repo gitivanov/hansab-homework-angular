@@ -19,10 +19,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20.14.0'
+          node-version: '20.x'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Angular app
         run: npm run build --prod
@@ -32,6 +32,6 @@ jobs:
         with:
           name: angular-dist
           path: dist/
-          
-      - name: Run tests (if applicable)
-        run: npm test -- --watch=false
+
+      - name: Test
+        run: npm run test-headless

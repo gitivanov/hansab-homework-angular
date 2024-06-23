@@ -1,22 +1,38 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { UserListComponent } from './user-list.component';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { ApiDataService } from '../../services/api-data.service';
+import { MockApiDataService } from '../../services/mock-api-data.service';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
+  let mockApiDataService: MockApiDataService;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [UserListComponent]
-    })
-    .compileComponents();
     
+    mockApiDataService = new MockApiDataService();
+
+    await TestBed.configureTestingModule({
+      providers: [ApiDataService],
+      imports: [UserListComponent, HttpClientTestingModule]
+    })
+    .overrideProvider(ApiDataService, { useValue: mockApiDataService })
+    .compileComponents();
+
     fixture = TestBed.createComponent(UserListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
+
+  it('should return mocked users', fakeAsync(() => {
+    fixture.detectChanges(); // ngOnInit is called here
+    tick(); // simulate the passage of time for async operations
+
+    expect(component.users).toEqual(mockApiDataService.mockUsers);
+  }));
 });

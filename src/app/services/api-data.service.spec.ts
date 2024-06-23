@@ -29,7 +29,7 @@ describe('ApiDataService', () => {
     expect(apiDataService).toBeTruthy();
   });
 
-  it('should get all users', ()=> {
+  it('should return mocked users', ()=> {
     let sort: string = 'name:asc';
     httpClientSpy.get.and.returnValue(of(mockUsers));
     apiDataService.getAllUsers(sort).subscribe(users => {    
@@ -38,7 +38,7 @@ describe('ApiDataService', () => {
     expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
   });
 
-  it('should get all cars', ()=> {
+  it('should return mocked cars', ()=> {
     let sort: string = 'name:asc';
     httpClientSpy.get.and.returnValue(of(mockCars));
     apiDataService.getAllCars(sort).subscribe(cars => {    
