@@ -1,4 +1,4 @@
-# HansabHomeworkAngular
+# Hansab Homework Angular
 
 [![Build Status](https://github.com/gitivanov/hansab-homework-angular/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/gitivanov/hansab-homework-angular/actions/workflows/angular-ci.yml)
 
