@@ -39,9 +39,8 @@ describe('ApiDataService', () => {
   });
 
   it('should return mocked cars', ()=> {
-    let sort: string = 'name:asc';
     httpClientSpy.get.and.returnValue(of(mockCars));
-    apiDataService.getAllCars(sort).subscribe(cars => {    
+    apiDataService.getAllCars('name:asc').subscribe(cars => {    
         expect(cars).toEqual(mockCars);
     });
     expect(httpClientSpy.get).toHaveBeenCalledTimes(1);

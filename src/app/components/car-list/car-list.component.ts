@@ -16,16 +16,25 @@ export class CarListComponent implements OnInit {
   cars: CarDto[] = [];
   sort: string = 'number:asc';
   search: string = '';
+  errorMessage: string = '';
 
-  constructor(private apiDataService: ApiDataService) { }
+  constructor(private apiDataService: ApiDataService) {}
 
   ngOnInit(): void {
     this.loadCars();
   }
 
   loadCars(): void {
-    this.apiDataService.getAllCars(this.sort).subscribe(cars => {
-      this.cars = cars;
+    this.apiDataService.getAllCars(this.sort).subscribe({
+      next: (data) => {
+        this.cars = data;
+      },
+      error: (error) => {
+        this.errorMessage = `Please ensure the backend is started!\nERROR [${error.message}]`;
+      },
+      complete: () => {
+        this.errorMessage = '';
+      }
     });
   }
 

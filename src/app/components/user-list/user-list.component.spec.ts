@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { UserListComponent } from './user-list.component';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ApiDataService } from '../../services/api-data.service';
 import { MockApiDataService } from '../../services/mock-api-data.service';
 
@@ -10,7 +10,6 @@ describe('UserListComponent', () => {
   let mockApiDataService: MockApiDataService;
 
   beforeEach(async () => {
-    
     mockApiDataService = new MockApiDataService();
 
     await TestBed.configureTestingModule({
@@ -25,7 +24,7 @@ describe('UserListComponent', () => {
   });
 
   it('should be created', () => {
-    fixture.detectChanges();
+    fixture.detectChanges(); // ngOnInit is called here
     expect(component).toBeTruthy();
   });
 

@@ -1,4 +1,7 @@
-<div class="container">
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert" style="white-space: pre-line;">
+  {{ errorMessage }}
+</div>
+<div class="container" *ngIf="!errorMessage">
     <h2>Cars</h2>
     <div class="mb-3">
       <input [(ngModel)]="search" (input)="searchCars()" type="text" class="form-control" placeholder="Search cars by number">

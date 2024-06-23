@@ -17,6 +17,7 @@ export class UserListComponent implements OnInit {
   users: UserDto[] = [];
   sort: string = 'name:asc';
   search: string = '';
+  errorMessage: string = '';
 
   constructor(private apiDataService: ApiDataService) { }
 
@@ -25,8 +26,16 @@ export class UserListComponent implements OnInit {
   }
 
   loadUsers(): void {
-    this.apiDataService.getAllUsers(this.sort).subscribe(users => {
-      this.users = users;
+    this.apiDataService.getAllUsers(this.sort).subscribe({
+      next: (data) => {
+        this.users = data;
+      },
+      error: (error) => {
+        this.errorMessage = `Please ensure the backend is started!\nERROR [${error.message}]`;
+      },
+      complete: () => {
+        this.errorMessage = '';
+      }
     });
   }
 
