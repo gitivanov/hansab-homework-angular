@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/gitivanov/hansab-homework-angular/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/gitivanov/hansab-homework-angular/actions/workflows/angular-ci.yml)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
 
 ## Angular frontend for Spring RESTful API
 
