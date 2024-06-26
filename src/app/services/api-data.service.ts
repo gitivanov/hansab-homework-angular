@@ -23,12 +23,12 @@ export class ApiDataService {
   }
 
   getUserById(id: number): Observable<UserDto> {
-    return this.http.get<UserDto>(`$${environment.apiUrl}/users/${id}`)
+    return this.http.get<UserDto>(`${environment.apiUrl}/users/${id}`)
       .pipe(catchError(this.handleError));
   }
 
-  getCarsByUserId(id: number): Observable<UserDto> {
-    return this.http.get<UserDto>(`$${environment.apiUrl}/users/${id}/cars`)
+  getCarsByUserId(id: number): Observable<CarDto[]> {
+    return this.http.get<CarDto[]>(`${environment.apiUrl}/users/${id}/cars`)
       .pipe(catchError(this.handleError));
   }
 

@@ -27,6 +27,9 @@
               <li *ngFor="let car of user.cars">{{ car.name }} ({{ car.model }})</li>
             </ul>
           </td>
+          <td>
+            <a [routerLink]="['/user', user.id]" class="btn btn-info">Details</a>
+          </td>          
         </tr>
       </tbody>
     </table>
