@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiDataService } from '../../services/api-data.service';
 import { CarDto } from '../../models/car.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-car-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
   templateUrl: './car-list.component.html',
   styleUrls: ['./car-list.component.scss']
 })

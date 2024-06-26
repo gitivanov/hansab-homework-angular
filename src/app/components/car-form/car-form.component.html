@@ -1,0 +1,12 @@
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+  
+  <div *ngIf="car">
+    <h2>Car Details</h2>
+    <p><strong>ID:</strong> {{ car.id }}</p>
+    <p><strong>Name:</strong> {{ car.name }}</p>
+    <p><strong>Model:</strong> {{ car.model }}</p>
+    <p><strong>Number:</strong> {{ car.number }}</p>
+  </div>
+  
