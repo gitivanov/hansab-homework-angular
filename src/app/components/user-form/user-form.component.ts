@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ApiDataService } from '../../services/api-data.service';
 import { UserDto } from '../../models/user.model';
@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
   user: UserDto | null = null;

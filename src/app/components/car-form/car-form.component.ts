@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './car-form.component.html',
-  styleUrl: './car-form.component.scss'
 })
 export class CarFormComponent {
 

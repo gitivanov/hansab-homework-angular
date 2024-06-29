@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { ApiDataService } from '../../services/api-data.service';
 import { UserDto } from '../../models/user.model'; 
 import { RouterModule } from '@angular/router';
@@ -9,9 +9,8 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
 })
 
 export class UserListComponent implements OnInit {
@@ -41,8 +40,16 @@ export class UserListComponent implements OnInit {
   }
 
   searchUsers(): void {
-    this.apiDataService.getUsersByName(this.search, this.sort).subscribe(users => {
-      this.users = users;
+    this.apiDataService.getUsersByName(this.search, this.sort).subscribe({
+      next: (data) => {
+        this.users = data;
+      },
+      error: (error) => {
+        this.errorMessage = `Please ensure the backend is started!\nERROR [${error.message}]`;
+      },
+      complete: () => {
+        this.errorMessage = '';
+      }
     });
   }
 

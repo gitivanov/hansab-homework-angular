@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { UserListComponent } from './user-list.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApiDataService } from '../../services/api-data.service';
 import { MockApiDataService } from '../../services/mock-api-data.service';
 import { RouterModule } from '@angular/router';
-import { CarListComponent } from '../car-list/car-list.component';
-import { UserFormComponent } from '../user-form/user-form.component';
+import { provideHttpClient } from '@angular/common/http';
+import { appRoutes } from '../../app.routes';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -16,15 +16,9 @@ describe('UserListComponent', () => {
     mockApiDataService = new MockApiDataService();
 
     await TestBed.configureTestingModule({
-      providers: [ApiDataService],
-      imports: [UserListComponent, HttpClientTestingModule, RouterModule.forRoot(
-        [{path: '', component: UserListComponent}, 
-         {path: 'users', component: UserListComponent},
-         {path: 'cars', component: CarListComponent},
-         { path: 'user/:id', component: UserFormComponent },
-         { path: '', redirectTo: 'users', pathMatch: 'full' },
-         { path: '**', redirectTo: 'users', pathMatch: 'full'}])]
-    })
+    imports: [UserListComponent, RouterModule.forRoot(appRoutes)],
+    providers: [ApiDataService, provideHttpClient(), provideHttpClientTesting()]
+})
     .overrideProvider(ApiDataService, { useValue: mockApiDataService })
     .compileComponents();
 

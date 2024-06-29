@@ -3,9 +3,9 @@ import { CarListComponent } from './car-list.component';
 import { ApiDataService } from '../../services/api-data.service';
 import { MockApiDataService } from '../../services/mock-api-data.service';
 import { RouterModule } from '@angular/router';
-import { UserFormComponent } from '../user-form/user-form.component';
-import { UserListComponent } from '../user-list/user-list.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { appRoutes } from '../../app.routes';
 
 describe('CarListComponent', () => {
   let component: CarListComponent;
@@ -16,15 +16,9 @@ describe('CarListComponent', () => {
     mockApiDataService = new MockApiDataService();
 
     await TestBed.configureTestingModule({
-      providers: [ApiDataService],
-      imports: [CarListComponent, HttpClientTestingModule, RouterModule.forRoot(
-        [{path: '', component: UserListComponent}, 
-         {path: 'users', component: UserListComponent},
-         {path: 'cars', component: CarListComponent},
-         { path: 'user/:id', component: UserFormComponent },
-         { path: '', redirectTo: 'users', pathMatch: 'full' },
-         { path: '**', redirectTo: 'users', pathMatch: 'full'}])]
-    })
+    imports: [CarListComponent, RouterModule.forRoot(appRoutes)],
+    providers: [ApiDataService, provideHttpClient(), provideHttpClientTesting()]
+})
     .overrideProvider(ApiDataService, { useValue: mockApiDataService })
     .compileComponents();
     

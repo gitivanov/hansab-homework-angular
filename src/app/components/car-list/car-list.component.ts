@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { ApiDataService } from '../../services/api-data.service';
 import { CarDto } from '../../models/car.model';
 import { RouterModule } from '@angular/router';
@@ -9,9 +9,8 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-car-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.scss']
 })
 export class CarListComponent implements OnInit {
   cars: CarDto[] = [];

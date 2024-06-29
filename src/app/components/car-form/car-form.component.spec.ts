@@ -1,11 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CarFormComponent } from './car-form.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { RouterModule } from '@angular/router';
-import { CarListComponent } from '../car-list/car-list.component';
-import { UserFormComponent } from '../user-form/user-form.component';
-import { UserListComponent } from '../user-list/user-list.component';
+import { provideHttpClient } from '@angular/common/http';
+import { appRoutes } from '../../app.routes';
 
 describe('CarFormComponent', () => {
   let component: CarFormComponent;
@@ -13,14 +11,9 @@ describe('CarFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CarFormComponent, HttpClientTestingModule, RouterModule.forRoot(
-        [{path: '', component: UserListComponent}, 
-         {path: 'users', component: UserListComponent},
-         {path: 'cars', component: CarListComponent},
-         { path: 'user/:id', component: UserFormComponent },
-         { path: '', redirectTo: 'users', pathMatch: 'full' },
-         { path: '**', redirectTo: 'users', pathMatch: 'full'}])]
-    })
+    imports: [CarFormComponent, RouterModule.forRoot(appRoutes)],
+    providers: [provideHttpClient(), provideHttpClientTesting()]
+  })
     .compileComponents();
 
     fixture = TestBed.createComponent(CarFormComponent);

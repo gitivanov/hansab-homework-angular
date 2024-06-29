@@ -1,0 +1,6 @@
+projectKey=Hansab-Homework-Angular
+serverUrl=http://localhost:9000
+serverVersion=10.6.0.92116
+dashboardUrl=http://localhost:9000/dashboard?id=Hansab-Homework-Angular
+ceTaskId=ab864a6e-3bd7-42f7-b849-51e3a1c82e1b
+ceTaskUrl=http://localhost:9000/api/ce/task?id=ab864a6e-3bd7-42f7-b849-51e3a1c82e1b
